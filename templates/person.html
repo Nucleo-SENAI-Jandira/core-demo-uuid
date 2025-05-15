@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Perfil da Pessoa</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        .profile {
+            background: #f2f2f2;
+            padding: 20px;
+            border-radius: 10px;
+            width: 400px;
+        }
+        a { display: inline-block; margin-top: 20px; color: #007bff; }
+    </style>
+</head>
+<body>
+    <h1>Perfil da Pessoa</h1>
+    <div class="profile">
+        <strong>Nome:</strong> {{ person.name }}<br>
+        <strong>Email:</strong> {{ person.email }}<br>
+        <strong>Data de Criação:</strong> {{ person.created_at }}<br>
+        <strong>ID Inteiro:</strong> {{ person.int_id }}<br>
+        <strong>UUID:</strong> {{ person.uuid }}
+    </div>
+    <a href="/">← Voltar</a>
+</body>
+</html>

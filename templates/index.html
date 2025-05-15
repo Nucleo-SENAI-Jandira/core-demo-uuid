@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UUID Demo com Ordenação</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        .container { display: flex; gap: 50px; }
+        .column { width: 45%; }
+        .person {
+            padding: 10px;
+            margin-bottom: 5px;
+            background: #f0f0f0;
+            border-radius: 5px;
+            transition: background-color 0.5s ease;
+        }
+        .highlight {
+            background-color: #d1ffd1;
+        }
+        h2 { margin-top: 0; }
+        .controls {
+            margin-bottom: 20px;
+        }
+        .add-button, .sort-button {
+            padding: 10px 15px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cadastro de Pessoas – UUID v4 vs UUID v7</h1>
+
+    <div class="controls">
+        <a href="/add" class="add-button">➕ Adicionar Pessoa</a>
+        <a href="/?sort={{ 'desc' if sort_order == 'asc' else 'asc' }}" class="sort-button">
+            Ordenar: {{ '⬆️ ASC' if sort_order == 'asc' else '⬇️ DESC' }}
+        </a>
+        <a href="/clear" class="sort-button" style="background: #dc3545;">🗑️ Limpar Tudo</a>
+
+    </div>
+
+    <div class="container">
+        <div class="column">
+            <h2>UUID v4</h2>
+            {% for p in v4 %}
+                <div class="person {% if last_added and p.id == last_added.v4 %}highlight{% endif %}">
+                    <strong><a href="/pessoa/{{ p.id }}">{{ p.name }}</a></strong><br>
+
+                    {{ p.email }}<br>
+                    <small>ID: {{ p.id }}</small><br>
+                    <small>ID: {{ p.uuid }}</small><br>
+                    <small>Data: {{ p.created_at }}</small>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="column">
+            <h2>UUID v7</h2>
+            {% for p in v7 %}
+                <div class="person {% if last_added and p.id == last_added.v7 %}highlight{% endif %}">
+                    <strong><a href="/pessoa/{{ p.id }}">{{ p.name }}</a></strong><br>
+
+                    {{ p.email }}<br>
+                    <small>ID: {{ p.id }}</small><br>
+                    <small>ID: {{ p.uuid }}</small><br>
+                    <small>Data: {{ p.created_at }}</small>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
